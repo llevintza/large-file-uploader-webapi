@@ -5,8 +5,8 @@ using Autofac.Extensions.DependencyInjection;
 
 using IRU.Common.WebApplication;
 using IRU.LargeFileUploader.WebApp.IoC;
-using IRU.Services;
 using IRU.Services.DependencyInjection;
+using IRU.Services.Parsers.DependencyInjection;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -116,17 +116,17 @@ namespace IRU.LargeFileUploader.WebApp
             loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(context => context.SwaggerEndpoint("/swagger/v1/swagger.json", "V1"));
@@ -147,6 +147,7 @@ namespace IRU.LargeFileUploader.WebApp
         {
             builder.RegisterModule<WebAppModule>();
             builder.RegisterModule<ServicesModule>();
+            builder.RegisterModule<ParserModule>();
         }
     }
 }

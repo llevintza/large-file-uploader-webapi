@@ -15,11 +15,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Services.Abstractions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Services", "Services\IRU.Services\IRU.Services.csproj", "{242EA6E2-4CB5-4050-A171-D3A6DADD54E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.DependencyInjection", "Services\IRU.Services.DependencyInjection\IRU.Services.DependencyInjection.csproj", "{149525BD-7C1B-4EBF-8A35-93C830FCDB5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Services.DependencyInjection", "Services\IRU.Services.DependencyInjection\IRU.Services.DependencyInjection.csproj", "{149525BD-7C1B-4EBF-8A35-93C830FCDB5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Common.DependencyInjection", "Common\IRU.Common.DependecyInjection\IRU.Common.DependencyInjection.csproj", "{0F8E0F7A-CFAF-40CC-AD63-50867D4DCDBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Common.DependencyInjection", "Common\IRU.Common.DependecyInjection\IRU.Common.DependencyInjection.csproj", "{0F8E0F7A-CFAF-40CC-AD63-50867D4DCDBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Common.WebApplication", "Common\IRU.Common.WebApplication\IRU.Common.WebApplication.csproj", "{DE2AE89A-67A6-423A-9109-CA03F916DCEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Common.WebApplication", "Common\IRU.Common.WebApplication\IRU.Common.WebApplication.csproj", "{DE2AE89A-67A6-423A-9109-CA03F916DCEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers.Abstractions", "Services\IRU.Service.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj", "{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers", "Services\IRU.Services.Parsers\IRU.Services.Parsers.csproj", "{F6811B6C-F2B0-4E60-AA67-46EE014AFD44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers.DependencyInjection", "Services\IRU.Services.Paersers.DependencyInjection\IRU.Services.Parsers.DependencyInjection.csproj", "{87D92945-904B-4A0D-8612-2D7B00CDC0B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +57,18 @@ Global
 		{DE2AE89A-67A6-423A-9109-CA03F916DCEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE2AE89A-67A6-423A-9109-CA03F916DCEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE2AE89A-67A6-423A-9109-CA03F916DCEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6811B6C-F2B0-4E60-AA67-46EE014AFD44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6811B6C-F2B0-4E60-AA67-46EE014AFD44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6811B6C-F2B0-4E60-AA67-46EE014AFD44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6811B6C-F2B0-4E60-AA67-46EE014AFD44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D92945-904B-4A0D-8612-2D7B00CDC0B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D92945-904B-4A0D-8612-2D7B00CDC0B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D92945-904B-4A0D-8612-2D7B00CDC0B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D92945-904B-4A0D-8612-2D7B00CDC0B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +80,9 @@ Global
 		{149525BD-7C1B-4EBF-8A35-93C830FCDB5D} = {995A52B3-CF48-4BDD-A31E-2C9EF4A8E0ED}
 		{0F8E0F7A-CFAF-40CC-AD63-50867D4DCDBD} = {1DEEF4DF-7C91-45B3-95DF-F61A446BC81D}
 		{DE2AE89A-67A6-423A-9109-CA03F916DCEA} = {1DEEF4DF-7C91-45B3-95DF-F61A446BC81D}
+		{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1} = {995A52B3-CF48-4BDD-A31E-2C9EF4A8E0ED}
+		{F6811B6C-F2B0-4E60-AA67-46EE014AFD44} = {995A52B3-CF48-4BDD-A31E-2C9EF4A8E0ED}
+		{87D92945-904B-4A0D-8612-2D7B00CDC0B0} = {995A52B3-CF48-4BDD-A31E-2C9EF4A8E0ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AA454ED-16D8-4EFA-963C-612B3BB45D19}

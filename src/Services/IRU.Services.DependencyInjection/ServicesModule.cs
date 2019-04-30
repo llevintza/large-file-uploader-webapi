@@ -1,6 +1,4 @@
-﻿using System;
-
-using Autofac;
+﻿using Autofac;
 
 using AutoMapper;
 
@@ -12,12 +10,13 @@ namespace IRU.Services.DependencyInjection
     {
         public override void InitializeAutoMapper(IMapperConfigurationExpression config)
         {
-            //config.CreateMap<>()
+            config.CreateMap<Parsers.Models.RecordModel, Models.RecordModel>();
         }
 
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DataService>().As<IDataService>();
+            builder.RegisterType<RecordLoader>().As<IRecordLoader>();
         }
     }
 }

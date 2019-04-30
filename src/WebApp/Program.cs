@@ -11,10 +11,15 @@ namespace IRU.LargeFileUploader.WebApp
 {
     public class Program
     {
+        private const int K = 1024;
+
+        private const int M = K * K;
+
         public static async Task Main(string[] args)
         {
             var host = new WebHostBuilder()
-                .UseKestrel()
+                .UseKestrel(options =>
+                    options.Limits.MaxRequestBodySize = M)
                 .ConfigureServices(services => services.AddAutofac())
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()

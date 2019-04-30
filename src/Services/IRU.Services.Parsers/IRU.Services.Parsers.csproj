@@ -3,20 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  
+
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="12.1.2" />
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\IRU.Service.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj" />
-    <ProjectReference Include="..\IRU.Services.Abstractions\IRU.Services.Abstractions.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="CsvHelper">
-      <HintPath>C:\Users\llevinta\.nuget\packages\csvhelper\12.1.2\lib\netstandard2.0\CsvHelper.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
