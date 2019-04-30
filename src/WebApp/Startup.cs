@@ -1,7 +1,4 @@
-﻿using System;
-
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
+﻿using Autofac;
 
 using IRU.Common.WebApplication;
 using IRU.LargeFileUploader.WebApp.IoC;

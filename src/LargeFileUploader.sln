@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Common.DependencyInject
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Common.WebApplication", "Common\IRU.Common.WebApplication\IRU.Common.WebApplication.csproj", "{DE2AE89A-67A6-423A-9109-CA03F916DCEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers.Abstractions", "Services\IRU.Service.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj", "{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers.Abstractions", "Services\IRU.Services.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj", "{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers", "Services\IRU.Services.Parsers\IRU.Services.Parsers.csproj", "{F6811B6C-F2B0-4E60-AA67-46EE014AFD44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers.DependencyInjection", "Services\IRU.Services.Paersers.DependencyInjection\IRU.Services.Parsers.DependencyInjection.csproj", "{87D92945-904B-4A0D-8612-2D7B00CDC0B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.Services.Parsers.DependencyInjection", "Services\IRU.Services.Parsers.DependencyInjection\IRU.Services.Parsers.DependencyInjection.csproj", "{87D92945-904B-4A0D-8612-2D7B00CDC0B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

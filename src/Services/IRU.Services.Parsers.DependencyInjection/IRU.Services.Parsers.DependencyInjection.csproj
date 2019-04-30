@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\IRU.Common.DependecyInjection\IRU.Common.DependencyInjection.csproj" />
-    <ProjectReference Include="..\IRU.Service.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj" />
+    <ProjectReference Include="..\IRU.Services.Abstractions\IRU.Services.Abstractions.csproj" />
     <ProjectReference Include="..\IRU.Services.Parsers\IRU.Services.Parsers.csproj" />
   </ItemGroup>
 

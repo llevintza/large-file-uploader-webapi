@@ -19,7 +19,7 @@
     <ProjectReference Include="..\Common\IRU.Common.DependecyInjection\IRU.Common.DependencyInjection.csproj" />
     <ProjectReference Include="..\Common\IRU.Common.WebApplication\IRU.Common.WebApplication.csproj" />
     <ProjectReference Include="..\Services\IRU.Services.DependencyInjection\IRU.Services.DependencyInjection.csproj" />
-    <ProjectReference Include="..\Services\IRU.Services.Paersers.DependencyInjection\IRU.Services.Parsers.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Services\IRU.Services.Parsers.DependencyInjection\IRU.Services.Parsers.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

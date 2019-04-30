@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IRU.Service.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj" />
+    <ProjectReference Include="..\IRU.Services.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
