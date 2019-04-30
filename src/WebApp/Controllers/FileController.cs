@@ -24,13 +24,13 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
     [ApiController]
     public class FileController : ControllerBase
     {
-        private readonly IDataService _dataService;
+        private readonly IFileService _fileService;
 
         private readonly ILogger<FileController> _log;
 
-        public FileController(IDataService dataService, ILogger<FileController> log)
+        public FileController(IFileService fileService, ILogger<FileController> log)
         {
-            this._dataService = dataService;
+            this._fileService = fileService;
             this._log = log;
         }
 
@@ -105,7 +105,7 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
             //    throw;
             //}
             
-            await this._dataService.ProcessFileAsync(file.OpenReadStream(), cancellationToken);
+            await this._fileService.ProcessFileAsync(file.OpenReadStream(), cancellationToken);
 
             var result = new FileUploadResultModel
             {

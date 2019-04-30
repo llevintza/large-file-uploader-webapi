@@ -91,7 +91,7 @@ namespace IRU.LargeFileUploader.WebApp
         //    // AFTER Populate those registrations can override things
         //    // in the ServiceCollection. Mix and match as needed.
         //    builder.Populate(services);
-        //    builder.RegisterType<DataService>().As<IDataService>();
+        //    builder.RegisterType<FileService>().As<IFileService>();
         //    this.ApplicationContainer = builder.Build();
 
         //    // Create the IServiceProvider based on the container.

@@ -15,7 +15,7 @@ namespace IRU.Services.DependencyInjection
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<DataService>().As<IDataService>();
+            builder.RegisterType<FileService>().As<IFileService>();
             builder.RegisterType<RecordLoader>().As<IRecordLoader>();
         }
     }

@@ -11,19 +11,18 @@ using Microsoft.Extensions.Logging;
 
 namespace IRU.Services
 {
-    public class DataService : IDataService
+    public class FileService : IFileService
     {
-        private readonly ILogger<DataService> _log;
+        private readonly ILogger<FileService> _log;
 
         private readonly IRecordLoader _loader;
 
-        public DataService(
+        public FileService(
             IRecordLoader loader,
-            ILogger<DataService> log)
+            ILogger<FileService> log)
         {
             this._loader = loader;
             this._log = log;
-
         }
         
         public async Task<bool> ProcessFileAsync(Stream stream, CancellationToken cancellationToken)

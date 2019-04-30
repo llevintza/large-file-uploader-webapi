@@ -13,10 +13,4 @@
     <ProjectReference Include="..\IRU.Services.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj" />
   </ItemGroup>
   
-  <ItemGroup>
-    <Reference Include="CsvHelper">
-      <HintPath>C:\Users\llevinta\.nuget\packages\csvhelper\12.1.2\lib\netstandard2.0\CsvHelper.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

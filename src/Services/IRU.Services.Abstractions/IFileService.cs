@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace IRU.Services
 {
-    public interface IDataService
+    public interface IFileService
     {
         Task<bool> ProcessFileAsync(Stream stream, CancellationToken cancellationToken);
     }
