@@ -27,6 +27,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Services.Parsers", "Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRU.Services.Parsers.DependencyInjection", "Services\IRU.Services.Parsers.DependencyInjection\IRU.Services.Parsers.DependencyInjection.csproj", "{87D92945-904B-4A0D-8612-2D7B00CDC0B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{875EB575-C0E0-466C-BE8B-05AE71961F90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.DataAccessLayer", "DataAccessLayer\IRU.DataAccessLayer\IRU.DataAccessLayer.csproj", "{1D9D07D5-4C6F-4578-8ADE-41C1563303E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.DataAccessLayer.Repositories.Abstractions", "DataAccessLayer\IRU.DataAccessLayer.Repositories.Abstractions\IRU.DataAccessLayer.Repositories.Abstractions.csproj", "{A153CB95-B66C-43B4-9FB4-E16AE2681368}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.DataAccessLayer.Repositories", "DataAccessLayer\IRU.DataAccessLayer.Repositories\IRU.DataAccessLayer.Repositories.csproj", "{35F9C0CE-FF66-4703-B491-E1E61C081AA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRU.DataAccessLayer.Repositories.DependencyInjection", "DataAccessLayer\IRU.DataAccessLayer.Repositories.DependencyInjection\IRU.DataAccessLayer.Repositories.DependencyInjection.csproj", "{1712CC15-4E22-4F98-9066-1FFF2B21739D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +79,22 @@ Global
 		{87D92945-904B-4A0D-8612-2D7B00CDC0B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87D92945-904B-4A0D-8612-2D7B00CDC0B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87D92945-904B-4A0D-8612-2D7B00CDC0B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D9D07D5-4C6F-4578-8ADE-41C1563303E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D9D07D5-4C6F-4578-8ADE-41C1563303E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D9D07D5-4C6F-4578-8ADE-41C1563303E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D9D07D5-4C6F-4578-8ADE-41C1563303E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A153CB95-B66C-43B4-9FB4-E16AE2681368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A153CB95-B66C-43B4-9FB4-E16AE2681368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A153CB95-B66C-43B4-9FB4-E16AE2681368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A153CB95-B66C-43B4-9FB4-E16AE2681368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35F9C0CE-FF66-4703-B491-E1E61C081AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F9C0CE-FF66-4703-B491-E1E61C081AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F9C0CE-FF66-4703-B491-E1E61C081AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F9C0CE-FF66-4703-B491-E1E61C081AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1712CC15-4E22-4F98-9066-1FFF2B21739D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1712CC15-4E22-4F98-9066-1FFF2B21739D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1712CC15-4E22-4F98-9066-1FFF2B21739D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1712CC15-4E22-4F98-9066-1FFF2B21739D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +109,10 @@ Global
 		{83CE5BCF-9EBD-4559-AD5D-34F4308AF1B1} = {995A52B3-CF48-4BDD-A31E-2C9EF4A8E0ED}
 		{F6811B6C-F2B0-4E60-AA67-46EE014AFD44} = {995A52B3-CF48-4BDD-A31E-2C9EF4A8E0ED}
 		{87D92945-904B-4A0D-8612-2D7B00CDC0B0} = {995A52B3-CF48-4BDD-A31E-2C9EF4A8E0ED}
+		{1D9D07D5-4C6F-4578-8ADE-41C1563303E7} = {875EB575-C0E0-466C-BE8B-05AE71961F90}
+		{A153CB95-B66C-43B4-9FB4-E16AE2681368} = {875EB575-C0E0-466C-BE8B-05AE71961F90}
+		{35F9C0CE-FF66-4703-B491-E1E61C081AA4} = {875EB575-C0E0-466C-BE8B-05AE71961F90}
+		{1712CC15-4E22-4F98-9066-1FFF2B21739D} = {875EB575-C0E0-466C-BE8B-05AE71961F90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AA454ED-16D8-4EFA-963C-612B3BB45D19}

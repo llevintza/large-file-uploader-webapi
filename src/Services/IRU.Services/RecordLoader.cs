@@ -4,8 +4,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using IRU.Services.Configuration;
 using IRU.Services.Parsers;
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace IRU.Services
@@ -19,17 +21,19 @@ namespace IRU.Services
         private readonly StringBuilder _buffer;
 
         //todo: rad from config
-        private const int BufferSize = 3;
+        private readonly int _bufferSize;
 
         private int _position;
 
-        public RecordLoader(IRecordFactory recordFactory, ILogger<RecordLoader> log)
+        public RecordLoader(IRecordFactory recordFactory, RecordLoaderConfiguration loaderConfig, ILogger<RecordLoader> log)
         {
             this._recordFactory = recordFactory;
             this._log = log;
 
             this._buffer = new StringBuilder();
+            this._bufferSize = loaderConfig.BufferSize;
         }
+
 
         public async Task<IEnumerable<TRecord>> GetRecordsAsync<TRecord>(CancellationToken cancellationToken)
         {
@@ -43,7 +47,7 @@ namespace IRU.Services
                 this.InitializeBuffer();
                 do
                 {
-                    while (this._position <= BufferSize && !streamReader.EndOfStream)
+                    while (this._position <= this._bufferSize && !streamReader.EndOfStream)
                     {
                         var value = await streamReader.ReadLineAsync();
                         this._buffer.AppendLine(value);
@@ -62,9 +66,7 @@ namespace IRU.Services
 
         private async Task<bool> FlushBufferAsync<TRecord>(CancellationToken cancellationToken)
         {
-            await this._recordFactory.LoadDataAsync(this._buffer.ToString(), typeof(TRecord), cancellationToken);
-
-            return true;
+            return await this._recordFactory.LoadDataAsync(this._buffer.ToString(), typeof(TRecord), cancellationToken);
         }
 
         private void InitializeBuffer()

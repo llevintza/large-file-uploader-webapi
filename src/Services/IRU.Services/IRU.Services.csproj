@@ -6,9 +6,12 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="8.0.3" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\DataAccessLayer\IRU.DataAccessLayer.Repositories.Abstractions\IRU.DataAccessLayer.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\IRU.Services.Abstractions\IRU.Services.Abstractions.csproj" />
     <ProjectReference Include="..\IRU.Services.Parsers.Abstractions\IRU.Services.Parsers.Abstractions.csproj" />
   </ItemGroup>

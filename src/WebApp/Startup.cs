@@ -1,6 +1,7 @@
 ﻿using Autofac;
 
 using IRU.Common.WebApplication;
+using IRU.DataAccessLayer.Repositories.DependencyInjection;
 using IRU.LargeFileUploader.WebApp.IoC;
 using IRU.Services.DependencyInjection;
 using IRU.Services.Parsers.DependencyInjection;
@@ -101,7 +102,9 @@ namespace IRU.LargeFileUploader.WebApp
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             this.ContainerBuilder.InitializeAutoFac(containerBuilder);
-            this.ContainerBuilder.InitializeAutoMapper(containerBuilder);   
+            this.ContainerBuilder.InitializeAutoMapper(containerBuilder);
+
+            containerBuilder.Register(c => this.Configuration).As<IConfiguration>().SingleInstance();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -145,6 +148,7 @@ namespace IRU.LargeFileUploader.WebApp
             builder.RegisterModule<WebAppModule>();
             builder.RegisterModule<ServicesModule>();
             builder.RegisterModule<ParserModule>();
+            builder.RegisterModule<DataModule>();
         }
     }
 }

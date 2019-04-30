@@ -10,7 +10,5 @@ namespace IRU.Services.Parsers
         Task<bool> LoadDataAsync(string data, Type type, CancellationToken cancellationToken);
 
         Task<IEnumerable<TRecord>> GetRecordsAsync<TRecord>(CancellationToken cancellationToken);
-
-        //where TRecord : new();
     }
 }

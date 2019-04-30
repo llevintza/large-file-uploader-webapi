@@ -24,14 +24,14 @@ namespace IRU.Services
             this._loader = loader;
             this._log = log;
         }
-        
-        public async Task<bool> ProcessFileAsync(Stream stream, CancellationToken cancellationToken)
+
+        public async Task<IEnumerable<TRecord>> GetRecordsAsync<TRecord>(Stream stream, CancellationToken cancellationToken)
         {
-            await this._loader.LoadAsync<RecordModel>(stream, cancellationToken);
+            await this._loader.LoadAsync<TRecord>(stream, cancellationToken);
 
-            var records = await this._loader.GetRecordsAsync<RecordModel>(cancellationToken);
+            var records = await this._loader.GetRecordsAsync<TRecord>(cancellationToken);
 
-            return false;
+            return records;
         }
     }
 }

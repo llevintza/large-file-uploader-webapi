@@ -25,7 +25,7 @@ namespace IRU.Services.Parsers
         private readonly IMapper _mapper;
 
         private readonly ILogger<RecordFactory> _log;
-
+        
         public RecordFactory(IMapper mapper, ILogger<RecordFactory> log)
         {
             this._mapper = mapper;

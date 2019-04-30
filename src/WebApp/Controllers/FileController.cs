@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -6,9 +7,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Autofac;
+
 using IRU.LargeFileUploader.WebApp.Attributes;
 using IRU.LargeFileUploader.WebApp.Models.File;
 using IRU.Services;
+using IRU.Services.Models;
 
 using JetBrains.Annotations;
 
@@ -28,8 +32,14 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
 
         private readonly ILogger<FileController> _log;
 
-        public FileController(IFileService fileService, ILogger<FileController> log)
+        private readonly IEnumerable<IDataService> _dataServices;
+
+        public FileController(
+            IEnumerable<IDataService> dataServices,
+            IFileService fileService,
+            ILogger<FileController> log)
         {
+            this._dataServices = dataServices;
             this._fileService = fileService;
             this._log = log;
         }
@@ -105,7 +115,12 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
             //    throw;
             //}
             
-            await this._fileService.ProcessFileAsync(file.OpenReadStream(), cancellationToken);
+            var records = await this._fileService.GetRecordsAsync<RecordModel>(file.OpenReadStream(), cancellationToken);
+
+            //todo: get all implementations of DataService
+            var writeTasks = this._dataServices.Select(x => x.SaveDataAsync(records, cancellationToken)).ToArray();
+
+            await Task.WhenAll(writeTasks);
 
             var result = new FileUploadResultModel
             {
