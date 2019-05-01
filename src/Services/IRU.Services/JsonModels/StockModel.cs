@@ -1,4 +1,4 @@
-﻿namespace IRU.Services.Models
+﻿namespace IRU.Services.JsonModels
 {
     public class StockModel
     {
@@ -6,7 +6,7 @@
         
         public int Size { get; set; }
 
-        public ColorModel Color { get; set; }
+        public string Color { get; set; }
 
         public string DeliveredInterval { get; set; }
 

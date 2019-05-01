@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 using Autofac;
 
@@ -6,6 +7,7 @@ using AutoMapper;
 
 using IRU.Common.DependencyInjection;
 using IRU.Services.Configuration;
+using IRU.Services.Models;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -18,7 +20,7 @@ namespace IRU.Services.DependencyInjection
         {
             config.CreateMap<Models.StockModel, Parsers.Models.RecordModel>()
                 .ForMember(dest => dest.ArticleCode, opts => opts.MapFrom(src => src.Article.ArticleCode))
-                .ForMember(dest => dest.Color, opts => opts.MapFrom(src => src.Color))
+                .ForMember(dest => dest.Color, opts => opts.MapFrom(src => $"{src.Color.Value}".ToLower()))
                 .ForMember(dest => dest.ColorCode, opts => opts.MapFrom(src => src.Article.ColorCode))
                 .ForMember(dest => dest.DeliveredIn, opts => opts.MapFrom(src => src.DeliveredInterval))
                 .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.Article.Description))
@@ -27,9 +29,12 @@ namespace IRU.Services.DependencyInjection
                 .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
                 .ForMember(dest => dest.Size, opts => opts.MapFrom(src => src.Size))
                 .ForMember(dest => dest.Q1, opts => opts.MapFrom(src => src.Category))
-                .ReverseMap();
+                .ReverseMap()
+                .ForPath(dest => dest.Color, opts => opts.MapFrom(src => ParseColor(src.Color)));
 
-            config.CreateMap<Models.RecordModel, JsonRecordModel>();
+            config.CreateMap<Models.StockModel, JsonModels.StockModel>()
+                .ForMember(dest => dest.Color, opts => opts.MapFrom(src => $"{src.Color.Value}"));
+            config.CreateMap<Models.ArticleModel, JsonModels.ArticleModel>();
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -63,5 +68,7 @@ namespace IRU.Services.DependencyInjection
                     return config;
                 }).As<JsonDataServiceConfiguration>().SingleInstance();
         }
+
+        private static ColorModel ParseColor(string value) => new ColorModel { Value = (Colors)Enum.Parse(typeof(Colors), value, ignoreCase: true) };
     }
 }

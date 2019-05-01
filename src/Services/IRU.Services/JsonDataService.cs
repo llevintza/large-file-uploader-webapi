@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +11,7 @@ using IRU.Services.Configuration;
 using Microsoft.Extensions.Configuration;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace IRU.Services
 {
@@ -30,41 +29,23 @@ namespace IRU.Services
 
         public async Task<bool> SaveDataAsync<TRecord>(IEnumerable<TRecord> records, CancellationToken cancellationToken)
         {
-            var items = this._mapper.Map<TRecord[], JsonRecordModel[]>(records.ToArray());
+            var items = this._mapper.Map<TRecord[], JsonModels.StockModel[]>(records.ToArray());
 
             var path = Path.Combine(this._jsonConfig.Path, this._jsonConfig.FileName);
 
-            using (StreamWriter file = File.CreateText(path))
+            using (var file = File.CreateText(path))
             {
-                JsonSerializer serializer = new JsonSerializer();
+                var serializer = new JsonSerializer
+                {
+                    MissingMemberHandling = MissingMemberHandling.Ignore,
+                    Formatting = Formatting.Indented,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
+
                 serializer.Serialize(file, items);
             }
 
             return await Task.FromResult(true);
         }
-    }
-
-    //todo: move to separate file
-    public class JsonRecordModel
-    {
-        public string Key { get; set; }
-
-        public string ArticleCode { get; set; }
-
-        public string ColorCode { get; set; }
-
-        public string Description { get; set; }
-
-        public decimal Price { get; set; }
-
-        public string DiscountPrice { get; set; }
-
-        public string DeliveredIn { get; set; }
-
-        public string Q1 { get; set; }
-
-        public int Size { get; set; }
-
-        public string Color { get; set; }
     }
 }

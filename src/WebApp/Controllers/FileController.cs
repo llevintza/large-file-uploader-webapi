@@ -58,63 +58,89 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
         [DisableFormValueModelBinding]
         public async Task<FileUploadResultModel> UploadAsync(IFormFile file, CancellationToken cancellationToken)
         {
-            //try
-            //{
-            //    //var boundary = Request.GetMultipartBoundary();
+            var records = await this._fileService.GetRecordsAsync<StockModel>(file.OpenReadStream(), cancellationToken);
 
-            //    //if (string.IsNullOrWhiteSpace(boundary))
-            //    //    throw new Exception("could not identify the boundary");
+            var writeTasks = this._dataServices.Select(x => x.SaveDataAsync(records, cancellationToken)).ToArray();
+
+            await Task.WhenAll(writeTasks);
+
+            return new FileUploadResultModel
+            {
+                FileName = file.FileName,
+                Size = file.Length,
+                Status = ProcessingStatuses.Success
+            };
+        }
+        
+        /// <summary>
+        /// Uploads multipart file
+        /// </summary>
+        /// <remarks>
+        ///     Uploads large CSV file
+        /// </remarks>
+        /// <response code="200">File processing result.</response>
+        [HttpPost]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(FileUploadResultModel), (int)HttpStatusCode.OK)]
+        [Route("upload-multipart")]
+        [DisableFormValueModelBinding]
+        public async Task<FileUploadResultModel> UploadUsingMultipartAsync(IFormFile file, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var boundary = Request.GetMultipartBoundary();
+
+                if (string.IsNullOrWhiteSpace(boundary))
+                    throw new Exception("could not identify the boundary");
 
 
-            //    //var reader = new MultipartReader(boundary, Request.Body, 1024);
-            //    //var section = await reader.ReadNextSectionAsync(cancellationToken);
-            //    ////var str = await section.ReadAsStringAsync();
+                var reader = new MultipartReader(boundary, Request.Body, 1024);
+                var section = await reader.ReadNextSectionAsync(cancellationToken);
 
-            //    //var fileSection = section.AsFileSection();
-            //    //var fileSectionFileStream = fileSection.FileStream;
+                var fileSection = section.AsFileSection();
+                //var fileSectionFileStream = fileSection.FileStream;
 
-            //    ////this._log.LogDebug($"str = {str}");
+                ////this._log.LogDebug($"str = {str}");
 
-            //    //while (section != null)
-            //    //{
-            //        // process each image
-            //        //const int chunkSize = 1024;
-            //        //var buffer = new byte[chunkSize];
-            //        //var bytesRead = 0;
-            //        //var fileName = GetFileName(section.ContentDisposition);
-            //        var buffer = new StringBuilder();
+                //while (section != null)
+                //{
+                // process each image
+                //const int chunkSize = 1024;
+                //var buffer = new byte[chunkSize];
+                //var bytesRead = 0;
+                //var fileName = GetFileName(section.ContentDisposition);
+                var buffer = new StringBuilder();
 
-            //        using (var streamReader = new StreamReader(file.OpenReadStream(), Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: 1024, leaveOpen: true))
-            //        {
-            //            //do
-            //            //{
-            //            //    bytesRead = await section.Body.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
-            //            //    stream.Write(buffer, 0, bytesRead);
+                using (var streamReader = new StreamReader(file.OpenReadStream(), Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: 1024, leaveOpen: true))
+                {
+                    //do
+                    //{
+                    //    bytesRead = await section.Body.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
+                    //    stream.Write(buffer, 0, bytesRead);
 
-            //            //} while (bytesRead > 0);
-            //            do
-            //            {
-            //                var value = await streamReader.ReadLineAsync();
-            //                buffer.AppendLine(value);
-            //            }
-            //            while (!streamReader.EndOfStream);
+                    //} while (bytesRead > 0);
+                    do
+                    {
+                        var value = await streamReader.ReadLineAsync();
+                        buffer.AppendLine(value);
+                    }
+                    while (!streamReader.EndOfStream);
 
-            //            //var value = await streamReader.ReadLineAsync();
-            //            var fullValue = buffer.ToString();
+                    //var value = await streamReader.ReadLineAsync();
+                    var fullValue = buffer.ToString();
 
-            //            this._log.LogInformation(fullValue);
-            //        }
+                    this._log.LogInformation(fullValue);
+                }
 
-            //    //    section = await reader.ReadNextSectionAsync(cancellationToken);
-            //    //}
+                //    section = await reader.ReadNextSectionAsync(cancellationToken);
+                //}
 
-            //}
-            //catch (Exception exception)
-            //{
-            //    this._log.LogError(exception.Message);
-            //    throw;
-            //}
-
+            }
+            catch (Exception exception)
+            {
+                this._log.LogError(exception.Message);
+                throw;
+            }
             var records = await this._fileService.GetRecordsAsync<StockModel>(file.OpenReadStream(), cancellationToken);
 
             var writeTasks = this._dataServices.Select(x => x.SaveDataAsync(records, cancellationToken)).ToArray();
