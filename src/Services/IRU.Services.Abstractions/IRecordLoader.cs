@@ -10,6 +10,5 @@ namespace IRU.Services
         Task<IEnumerable<TRecord>> GetRecordsAsync<TRecord>(CancellationToken cancellationToken);
 
         Task<bool> LoadAsync<TRecord>(Stream stream, CancellationToken cancellationToken);
-
     }
 }

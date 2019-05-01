@@ -76,7 +76,6 @@ namespace IRU.Services.DependencyInjection
                     var config = section.Get<JsonDataServiceConfiguration>();
                     config.Path = Path.Combine(appEnv.ContentRootPath, config.Path);
 
-
                     return config;
                 }).As<JsonDataServiceConfiguration>().SingleInstance();
         }

@@ -20,7 +20,6 @@ namespace IRU.Services
 
         private readonly StringBuilder _buffer;
 
-        //todo: rad from config
         private readonly int _bufferSize;
 
         private int _position;
@@ -33,7 +32,6 @@ namespace IRU.Services
             this._buffer = new StringBuilder();
             this._bufferSize = loaderConfig.BufferSize;
         }
-
 
         public async Task<IEnumerable<TRecord>> GetRecordsAsync<TRecord>(CancellationToken cancellationToken)
         {

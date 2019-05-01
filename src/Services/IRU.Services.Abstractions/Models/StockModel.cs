@@ -17,6 +17,5 @@
         public CategoryModel Category { get; set; }
 
         public ArticleModel Article { get; set; }
-
     }
 }
