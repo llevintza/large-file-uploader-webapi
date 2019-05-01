@@ -101,7 +101,7 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
 
             //            //var value = await streamReader.ReadLineAsync();
             //            var fullValue = buffer.ToString();
-                        
+
             //            this._log.LogInformation(fullValue);
             //        }
 
@@ -114,22 +114,19 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
             //    this._log.LogError(exception.Message);
             //    throw;
             //}
-            
-            var records = await this._fileService.GetRecordsAsync<RecordModel>(file.OpenReadStream(), cancellationToken);
 
-            //todo: get all implementations of DataService
+            var records = await this._fileService.GetRecordsAsync<StockModel>(file.OpenReadStream(), cancellationToken);
+
             var writeTasks = this._dataServices.Select(x => x.SaveDataAsync(records, cancellationToken)).ToArray();
 
             await Task.WhenAll(writeTasks);
 
-            var result = new FileUploadResultModel
+            return new FileUploadResultModel
             {
                 FileName = file.FileName,
                 Size = file.Length,
                 Status = ProcessingStatuses.Success
             };
-
-            return result;
         }
     }
 }

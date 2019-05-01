@@ -20,7 +20,7 @@ namespace IRU.Services.Parsers.Models
         public decimal Price { get; set; }
 
         [Name("DiscountPrice")]
-        public string DiscountPrice { get; set; }
+        public decimal DiscountPrice { get; set; }
 
         [Name("DeliveredIn")]
         public string DeliveredIn { get; set; }

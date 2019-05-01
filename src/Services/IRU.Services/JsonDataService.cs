@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using IRU.Services.Configuration;
-using IRU.Services.Models;
 
 using Microsoft.Extensions.Configuration;
 
@@ -29,9 +28,9 @@ namespace IRU.Services
             this._mapper = mapper;
         }
 
-        public async Task<bool> SaveDataAsync(IEnumerable<RecordModel> records, CancellationToken cancellationToken)
+        public async Task<bool> SaveDataAsync<TRecord>(IEnumerable<TRecord> records, CancellationToken cancellationToken)
         {
-            var items = this._mapper.Map<RecordModel[], JsonRecordModel[]>(records.ToArray());
+            var items = this._mapper.Map<TRecord[], JsonRecordModel[]>(records.ToArray());
 
             var path = Path.Combine(this._jsonConfig.Path, this._jsonConfig.FileName);
 

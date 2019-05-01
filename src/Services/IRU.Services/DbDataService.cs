@@ -7,7 +7,6 @@ using AutoMapper;
 
 using IRU.DataAccessLayer.Entities;
 using IRU.DataAccessLayer.Repositories;
-using IRU.Services.Models;
 
 namespace IRU.Services
 {
@@ -23,9 +22,9 @@ namespace IRU.Services
             this._recordsRepository = recordsRepository;
         }
 
-        public async Task<bool> SaveDataAsync(IEnumerable<RecordModel> records, CancellationToken cancellationToken)
+        public async Task<bool> SaveDataAsync<TRecord>(IEnumerable<TRecord> records, CancellationToken cancellationToken)
         {
-            var entities = this._mapper.Map<RecordModel[], RecordEntity[]>(records.ToArray());
+            var entities = this._mapper.Map<TRecord[], RecordEntity[]>(records.ToArray());
 
             var result = await this._recordsRepository.SaveRecordsAsync(entities, cancellationToken);
 
