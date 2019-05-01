@@ -13,15 +13,15 @@ namespace IRU.DataAccessLayer.Repositories.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType<RecordsRepository>().As<IRecordsRepository>();
+            builder.RegisterType<StockRepository>().As<IStockRepository>();
             builder.Register(c =>
             {
                 var config = c.Resolve<IConfiguration>();
 
-                var opt = new DbContextOptionsBuilder<RecordsDbContext>();
+                var opt = new DbContextOptionsBuilder<DatabaseContext>();
                 opt.UseSqlServer(config.GetConnectionString("RecordsDb"));
                 
-                return new RecordsDbContext(opt.Options);
+                return new DatabaseContext(opt.Options);
             }).AsSelf().InstancePerLifetimeScope();
         }
     }

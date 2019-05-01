@@ -58,18 +58,28 @@ namespace IRU.LargeFileUploader.WebApp.Controllers
         [DisableFormValueModelBinding]
         public async Task<FileUploadResultModel> UploadAsync(IFormFile file, CancellationToken cancellationToken)
         {
-            var records = await this._fileService.GetRecordsAsync<StockModel>(file.OpenReadStream(), cancellationToken);
-
-            var writeTasks = this._dataServices.Select(x => x.SaveDataAsync(records, cancellationToken)).ToArray();
-
-            await Task.WhenAll(writeTasks);
-
-            return new FileUploadResultModel
+            try
             {
-                FileName = file.FileName,
-                Size = file.Length,
-                Status = ProcessingStatuses.Success
-            };
+                var records = await this._fileService.GetRecordsAsync<StockModel>(file.OpenReadStream(), cancellationToken);
+
+                var writeTasks = this._dataServices.Select(x => x.SaveDataAsync(records, cancellationToken)).ToArray();
+
+                await Task.WhenAll(writeTasks);
+
+                return new FileUploadResultModel
+                {
+                    FileName = file.FileName,
+                    Size = file.Length,
+                    Status = ProcessingStatuses.Success
+                };
+            }
+            catch (Exception exception)
+            {
+                this._log.LogError(exception.Message);
+                await Task.FromException(exception);
+            }
+
+            return null;
         }
         
         /// <summary>

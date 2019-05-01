@@ -28,12 +28,13 @@ namespace IRU.Services.DependencyInjection
                 .ForMember(dest => dest.Key, opts => opts.MapFrom(src => src.Key))
                 .ForMember(dest => dest.Price, opts => opts.MapFrom(src => src.Price))
                 .ForMember(dest => dest.Size, opts => opts.MapFrom(src => src.Size))
-                .ForMember(dest => dest.Q1, opts => opts.MapFrom(src => src.Category))
+                .ForMember(dest => dest.Q1, opts => opts.MapFrom(src => $"{src.Category.Value}"))
                 .ReverseMap()
-                .ForPath(dest => dest.Color, opts => opts.MapFrom(src => ParseColor(src.Color)));
+                .ForPath(dest => dest.Color, opts => opts.MapFrom(src => ParseColor(src.Color)))
+                .ForPath(dest => dest.Category, opts => opts.MapFrom(src => ParseCategory(src.Q1)));
 
             config.CreateMap<Models.StockModel, JsonModels.StockModel>()
-                .ForMember(dest => dest.Color, opts => opts.MapFrom(src => $"{src.Color.Value}"));
+                .ForMember(dest => dest.Color, opts => opts.MapFrom(src => $"{src.Color.Value}".ToLower()));
             config.CreateMap<Models.ArticleModel, JsonModels.ArticleModel>();
         }
 
@@ -70,5 +71,6 @@ namespace IRU.Services.DependencyInjection
         }
 
         private static ColorModel ParseColor(string value) => new ColorModel { Value = (Colors)Enum.Parse(typeof(Colors), value, ignoreCase: true) };
+        private static CategoryModel ParseCategory(string value) => new CategoryModel { Value = (Categories)Enum.Parse(typeof(Categories), value, ignoreCase: true) };
     }
 }

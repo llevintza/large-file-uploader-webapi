@@ -14,7 +14,7 @@
 
         public decimal Discount { get; set; }
 
-        public string Category { get; set; }
+        public CategoryModel Category { get; set; }
 
         public ArticleModel Article { get; set; }
 

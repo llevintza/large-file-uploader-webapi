@@ -8,18 +8,18 @@ using IRU.DataAccessLayer.Entities;
 
 namespace IRU.DataAccessLayer.Repositories
 {
-    public class RecordsRepository : IRecordsRepository, IDisposable
+    public class StockRepository : IStockRepository, IDisposable
     {
-        private readonly RecordsDbContext _dbContext;
+        private readonly DatabaseContext _dbContext;
 
-        public RecordsRepository(RecordsDbContext dbContext)
+        public StockRepository(DatabaseContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
-        public async Task<int> SaveRecordsAsync(IEnumerable<RecordEntity> entities, CancellationToken cancellationToken)
+        public async Task<int> SaveRecordsAsync(IEnumerable<StockItem> entities, CancellationToken cancellationToken)
         {
-            await this._dbContext.Records.AddRangeAsync(entities, cancellationToken);
+            await this._dbContext.StockItems.AddRangeAsync(entities, cancellationToken);
 
             return await this._dbContext.SaveChangesAsync(cancellationToken);
         }

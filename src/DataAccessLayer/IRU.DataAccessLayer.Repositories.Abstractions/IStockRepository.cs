@@ -6,8 +6,8 @@ using IRU.DataAccessLayer.Entities;
 
 namespace IRU.DataAccessLayer.Repositories
 {
-    public interface IRecordsRepository
+    public interface IStockRepository
     {
-        Task<int> SaveRecordsAsync(IEnumerable<RecordEntity> entities, CancellationToken cancellationToken);
+        Task<int> SaveRecordsAsync(IEnumerable<StockItem> entities, CancellationToken cancellationToken);
     }
 }

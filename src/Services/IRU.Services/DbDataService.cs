@@ -14,19 +14,19 @@ namespace IRU.Services
     {
         private readonly IMapper _mapper;
 
-        private readonly IRecordsRepository _recordsRepository;
+        private readonly IStockRepository _stockRepository;
 
-        public DbDataService(IMapper mapper, IRecordsRepository recordsRepository)
+        public DbDataService(IMapper mapper, IStockRepository stockRepository)
         {
             this._mapper = mapper;
-            this._recordsRepository = recordsRepository;
+            this._stockRepository = stockRepository;
         }
 
         public async Task<bool> SaveDataAsync<TRecord>(IEnumerable<TRecord> records, CancellationToken cancellationToken)
         {
-            var entities = this._mapper.Map<TRecord[], RecordEntity[]>(records.ToArray());
+            var entities = this._mapper.Map<TRecord[], StockItem[]>(records.ToArray());
 
-            var result = await this._recordsRepository.SaveRecordsAsync(entities, cancellationToken);
+            var result = await this._stockRepository.SaveRecordsAsync(entities, cancellationToken);
 
             return entities.Length == result;
         }
