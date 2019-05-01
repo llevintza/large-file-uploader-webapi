@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IRU.DataAccessLayer.Entities
 {
-    [Table("dbo.StockItems")]
+    [Table("StockItems")]
     public class StockItem
     {
+        [Key]
         public string Key { get; set; }
 
         public int Size { get; set; }

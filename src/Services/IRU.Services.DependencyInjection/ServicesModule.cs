@@ -7,7 +7,6 @@ using AutoMapper;
 
 using IRU.Common.DependencyInjection;
 using IRU.Services.Configuration;
-using IRU.Services.Models;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -36,13 +35,25 @@ namespace IRU.Services.DependencyInjection
             config.CreateMap<Models.StockModel, JsonModels.StockModel>()
                 .ForMember(dest => dest.Color, opts => opts.MapFrom(src => $"{src.Color.Value}".ToLower()));
             config.CreateMap<Models.ArticleModel, JsonModels.ArticleModel>();
+
+            config.CreateMap<Models.StockModel, IRU.DataAccessLayer.Entities.StockItem>()
+                .ForMember(dest => dest.ColorId, opts => opts.MapFrom(src => src.Color.Id))
+                .ForMember(dest => dest.CategoryId, opts => opts.MapFrom(src => src.Category.Id))
+                .ForMember(dest => dest.ArticleCode, opts => opts.MapFrom(src => src.Article.ArticleCode));
+
+            config.CreateMap<Models.ArticleModel, DataAccessLayer.Entities.Article>();
+            config.CreateMap<Models.ColorModel, DataAccessLayer.Entities.Color>()
+                .ForMember(dest => dest.Name, opts => opts.MapFrom(src => $"{src.Value}"));
+
+            config.CreateMap<Models.CategoryModel, DataAccessLayer.Entities.Category>()
+                .ForMember(dest => dest.Name, opts => opts.MapFrom(src => $"{src.Value}"));
         }
 
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<FileService>().As<IFileService>();
             builder.RegisterType<RecordLoader>().As<IRecordLoader>();
-            //builder.RegisterType<DbDataService>().As<IDataService>();
+            builder.RegisterType<DbDataService>().As<IDataService>();
             builder.RegisterType<JsonDataService>().As<IDataService>();
 
             builder.Register(
@@ -70,7 +81,8 @@ namespace IRU.Services.DependencyInjection
                 }).As<JsonDataServiceConfiguration>().SingleInstance();
         }
 
-        private static ColorModel ParseColor(string value) => new ColorModel { Value = (Colors)Enum.Parse(typeof(Colors), value, ignoreCase: true) };
-        private static CategoryModel ParseCategory(string value) => new CategoryModel { Value = (Categories)Enum.Parse(typeof(Categories), value, ignoreCase: true) };
+        private static Models.ColorModel ParseColor(string value) => new Models.ColorModel { Value = (Models.Colors)Enum.Parse(typeof(Models.Colors), value, ignoreCase: true) };
+
+        private static Models.CategoryModel ParseCategory(string value) => new Models.CategoryModel { Value = (Models.Categories)Enum.Parse(typeof(Models.Categories), value, ignoreCase: true) };
     }
 }

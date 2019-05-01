@@ -2,7 +2,7 @@
 {
     public enum Colors
     {
-        Biege = 1,
+        Beige = 1,
         Blauw = 2,
         Bruin = 3,
         Grijs = 4,

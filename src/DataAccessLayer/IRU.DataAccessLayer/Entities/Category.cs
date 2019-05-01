@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IRU.DataAccessLayer.Entities
 {
-    [Table("dbo.Categories")]
+    [Table("Categories")]
 
     public class Category
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public string Name { get; set; }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace IRU.Services.Models
+﻿namespace IRU.Services.Models
 {
     public class ArticleModel
     {
